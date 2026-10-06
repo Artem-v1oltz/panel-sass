@@ -1,0 +1,220 @@
+@use "../base/variables" as *;
+
+.dashboard {
+    min-height: 100vh;
+    padding: $space-5;
+    background: $color-bg;
+    color: $color-text;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: $dashboard-width;
+        margin: 0 auto $space-4;
+    }
+
+    &__title {
+        color: $color-primary;
+        font-size: 32px;
+    }
+
+    &__status {
+        padding: $space-1 $space-2;
+        border-radius: $radius-small;
+        background: $color-success;
+        font-size: 13px;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $space-3;
+        max-width: $dashboard-width;
+        margin: 0 auto;
+    }
+
+    &--normal {
+        .panel {
+            border-color: $color-primary;
+        }
+    }
+
+    &--danger {
+        .panel {
+            border-color: $color-danger;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .dashboard__title {
+            color: $color-danger;
+        }
+    }
+}
+
+.panel {
+    padding: $space-4;
+    border: 1px solid $color-border;
+    border-radius: $radius-medium;
+    background: $color-panel;
+    box-shadow: $shadow-panel;
+    transition: $transition;
+
+    &__title {
+        margin-bottom: $space-3;
+        font-size: 20px;
+    }
+
+    &__text {
+        color: $color-muted;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-glow;
+    }
+}
+
+.engine {
+    &__value {
+        margin-bottom: $space-2;
+        color: $color-primary;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    &__bar {
+        height: 10px;
+        margin-bottom: $space-2;
+        overflow: hidden;
+        border-radius: $radius-small;
+        background: $color-border;
+    }
+
+    &__progress {
+        display: block;
+        width: 87%;
+        height: 100%;
+        border-radius: inherit;
+        background: $color-primary;
+    }
+}
+
+.energy {
+    &__value {
+        margin-bottom: $space-2;
+        color: $color-success;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    &__bar {
+        height: 10px;
+        margin-bottom: $space-2;
+        overflow: hidden;
+        border-radius: $radius-small;
+        background: $color-border;
+    }
+
+    &__progress {
+        display: block;
+        width: 64%;
+        height: 100%;
+        border-radius: inherit;
+        background: $color-success;
+    }
+}
+
+.mission {
+    &__name {
+        margin-bottom: $space-2;
+        color: $color-secondary;
+    }
+
+    &__description {
+        margin-bottom: $space-3;
+        color: $color-muted;
+        line-height: 1.5;
+    }
+
+    &__progress {
+        color: $color-primary;
+        font-weight: 700;
+    }
+}
+
+.controls {
+    padding: $space-4;
+    border-radius: $radius-medium;
+    background: $color-panel;
+    box-shadow: $shadow-panel;
+
+    &__title {
+        margin-bottom: $space-3;
+    }
+
+    &__buttons {
+        display: flex;
+        gap: $space-2;
+    }
+
+    &__button {
+        flex: 1;
+        padding: $space-2;
+        border: 1px solid $color-primary;
+        border-radius: $radius-small;
+        background: transparent;
+        color: $color-primary;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+            background: $color-primary;
+            color: $color-bg;
+        }
+
+        &:active {
+            transform: scale(0.96);
+        }
+
+        &:focus-visible {
+            outline: 3px solid $color-secondary;
+            outline-offset: 3px;
+        }
+    }
+}
+
+.warning {
+    grid-column: 1 / -1;
+    padding: $space-3;
+    border: 1px solid $color-warning;
+    border-radius: $radius-medium;
+    background: rgba(245, 158, 11, 0.08);
+
+    &__title {
+        margin-bottom: $space-1;
+        color: $color-warning;
+    }
+
+    &__text {
+        color: $color-muted;
+    }
+}
+
+@media (max-width: 700px) {
+    .dashboard {
+        padding: $space-2;
+
+        &__content {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .warning {
+        grid-column: auto;
+    }
+
+    .controls__buttons {
+        flex-direction: column;
+    }
+}
